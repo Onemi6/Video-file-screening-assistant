@@ -38,11 +38,22 @@ def delete():
 def main():
     # 根据工作目录获取文件列表，是否遍历，等，获取文件目录
     # 先处理工作目录下的
+    global many
     file_list = os.listdir(work_dir)
 
-    for filename in file_list:
-        if os.path.isfile(os.path.join(work_dir, filename)):
-            if filename[-3,] == 'mp4' & filename[-3,] == 'mkv':
+    for root,dirs,files in os.walk(file_list)
+        for name in files:
+            global many
+            filename = os.join(root,name)
+            if filename[-3,] == 'mp4' & filename[-3] == 'mkv' & filename[-3,] == 'avi':
                 openPotplayer(filename)
                 control_window.mainloop()
                 many = many + 1
+
+
+#  for filename in file_list:
+#     if os.path.isfile(os.path.join(work_dir, filename)):
+#        if filename[-3,] == 'mp4' & filename[-3,] == 'mkv':
+#                openPotplayer(filename)
+#               control_window.mainloop()
+#                many = many + 1
