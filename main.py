@@ -1,5 +1,6 @@
 import os
 import tkinter as tk
+from tkinter import filedialog
 
 root = tk.Tk
 root.title('视频库清理助手 V0.1')
@@ -34,14 +35,10 @@ def mv():
 def delete():
     pass
 
+def find():
+    global work_dir
 
-def main():
-    # 根据工作目录获取文件列表，是否遍历，等，获取文件目录
-    # 先处理工作目录下的
-    global many
-    file_list = os.listdir(work_dir)
-
-    for root,dirs,files in os.walk(file_list)
+    for root,dirs,files in os.walk(work_dir)
         for name in files:
             global many
             filename = os.join(root,name)
@@ -50,10 +47,18 @@ def main():
                 control_window.mainloop()
                 many = many + 1
 
+def main():
+    # 根据工作目录获取文件列表，是否遍历，等，获取文件目录
+    # 先处理工作目录下的
+    global many
+    global work_dir
 
-#  for filename in file_list:
-#     if os.path.isfile(os.path.join(work_dir, filename)):
-#        if filename[-3,] == 'mp4' & filename[-3,] == 'mkv':
-#                openPotplayer(filename)
-#               control_window.mainloop()
-#                many = many + 1
+    def set_dir():
+        work_dir = filedialog.askdirectory()
+
+    set_dir_bt = tk.Button(root,text = '设置工作目录',command = set_dir)
+    start_bt = tk.Button(root,text = '开始筛选视频文件',command = find)
+
+
+
+
