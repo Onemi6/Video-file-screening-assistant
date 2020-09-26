@@ -33,7 +33,7 @@ def control():
 
     control_window = tk.Tk()
     control_window.title('请选择是否保留')
-    control_window.geometry('250x100')
+    control_window.geometry('300x150')
     control_window.wm_attributes('-topmost', 1)
 
     delete_bt = tk.Button(control_window, text='删除此视频及同名文件', command=delete)
