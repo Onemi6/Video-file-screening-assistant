@@ -88,6 +88,7 @@ def find():
             global wait1
             global continueY
             global quit1
+            global continueY
 
             filename = os.path.join(root, name)
             if str(filename[-3:]) == 'mp4' or str(filename[-3:]) == 'mkv' or str(filename[-3:]) == 'avi':
@@ -99,6 +100,7 @@ def find():
                     while continueY == 0:
                         sleep(0.1)
                     wait1 = 0
+                    continueY = 0
             if quit1 == 1:
                 break
         else:
