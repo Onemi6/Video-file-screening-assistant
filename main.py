@@ -11,6 +11,7 @@ many = int(0)
 quit1 = 0
 wait1 = 0
 continueY = 0
+potONorOFF = 0
 file_name = '0'
 now_dir = '0'
 now_name = 0
@@ -23,9 +24,13 @@ def control():
 
     def quit_set():
         global quit1
-        quit1 = 1
+        global continueY
+
         control_window.destroy()
-        killedPotplayer()
+        if potONorOFF == 1:
+            killedPotplayer()
+        continueY = 1
+        quit1 = 1
 
     def continue_set():
         global continueY
@@ -54,9 +59,11 @@ def openPotplayer(filename):
     global dont_dir
     global output_dir
     global many
+    global potONorOFF
 
+    potONorOFF = 1
     os.system('C:\\"Program Files"\DAUM\PotPlayer\PotPlayerMini64.exe ' + filename)
-
+    potONorOFF = 0
 
 def killedPotplayer():
     os.system('taskkill /f /im PotPlayerMini64.exe')
