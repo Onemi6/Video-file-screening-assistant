@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 root = tk.Tk()
-root.title('视频库清理助手 V0.1.0.1')
+root.title('视频库清理助手 V0.1.2')
 many = int(0)
 quit1 = 0
 wait1 = 0
