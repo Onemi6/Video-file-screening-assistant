@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 import threading
 from time import sleep
@@ -15,6 +16,9 @@ potONorOFF = 0
 file_name = '0'
 now_dir = '0'
 now_name = 0
+work_dir = tk.StringVar()
+pot_dir = tk.StringVar()
+pot_dir.set('C:\\"Program Files"\DAUM\PotPlayer\PotPlayerMini64.exe ')
 
 
 def control():
@@ -62,11 +66,14 @@ def openPotplayer(filename):
     global potONorOFF
 
     potONorOFF = 1
-    os.system('C:\\"Program Files"\DAUM\PotPlayer\PotPlayerMini64.exe ' + filename)
+    subprocess.call(pot_dir.get() + filename, shell=True)
+    # os.system(pot_dir.get() + filename)
     potONorOFF = 0
 
+
 def killedPotplayer():
-    os.system('taskkill /f /im PotPlayerMini64.exe')
+    subprocess.call('taskkill /f /im PotPlayerMini64.exe', shell=True)
+    #os.system('taskkill /f /im PotPlayerMini64.exe')
 
 
 def mv():
@@ -86,7 +93,7 @@ def find():
     control_run = threading.Thread(target=control)
     control_run.start()
 
-    for root, dirs, files in os.walk(work_dir):
+    for root, dirs, files in os.walk(work_dir.get()):
         now_dir = root
         for name in files:
             global many
@@ -120,8 +127,12 @@ def find():
 def set_dir():
     global WorkDirPrint
     global work_dir
-    work_dir = filedialog.askdirectory()
-    WorkDirPrint.insert(0, work_dir)
+    work_dir.set(filedialog.askdirectory())
+
+
+def set_pot_dir():
+    global pot_dir
+    pot_dir.set(filedialog.askopenfilename())
 
 
 def quit():
@@ -131,13 +142,17 @@ def quit():
 set_dir_bt = tk.Button(root, text='设置工作目录', command=set_dir)
 start_bt = tk.Button(root, text='开始筛选视频文件', command=find)
 quit_bt = tk.Button(root, text='退出', command=quit)
+set_pot_dir_bt = tk.Button(root, text='设置potplayer程序位置', command=set_pot_dir)
 
-WorkDirPrint = tk.Listbox(root)
+WorkDirPrint = tk.Label(root, textvariable=work_dir)
+pot_dir_print = tk.Label(root, textvariable=pot_dir)
 
-set_dir_bt.grid(row=0, column=1)
-WorkDirPrint.grid(row=0, column=0)
-start_bt.grid(row=0, column=2)
-quit_bt.grid(row=0, column=3)
+pot_dir_print.grid(row=0, column=1)
+set_pot_dir_bt.grid(row=0, column=0)
+set_dir_bt.grid(row=1, column=0)
+WorkDirPrint.grid(row=1, column=1)
+start_bt.grid(row=2, column=0)
+quit_bt.grid(row=2, column=1)
 
 root.mainloop()
 
