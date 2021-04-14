@@ -1,3 +1,9 @@
+#该项目已被遗弃
+==================================
+
+请前往 https://github.com/Reboot93/Video-delete-assistant 查看新版本
+
+==========================================================================
 # Video-file-screening-assistant
 A simple video file screening assistant. 帮助绅士筛选本地视频，减少开关文件夹，以及处理大量视频文件与相关字幕/视频信息文件的时间。
 
